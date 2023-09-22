@@ -1,8 +1,9 @@
 const express = require("express");
 const { GetAllUserService, TambahUser, EditUserService, HapusUserService } = require("./UserService");
+const { AuthAdmin } = require("../Auth/Authentikasi");
 const router = express.Router();
 
-router.get("/", async (req, res) => {
+router.get("/", AuthAdmin , async (req, res) => {
     try {
         const data = await GetAllUserService();
         res.status(200).json(data)
